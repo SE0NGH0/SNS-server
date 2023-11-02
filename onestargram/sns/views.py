@@ -36,3 +36,10 @@ def new_post(request):
             )
         return redirect('/sns/')
     return render(request, 'sns/new_post.html')
+
+def remove_post(request, pk):
+    post = Post.objects.get(pk=pk)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('/sns/')
+    return render(request, 'sns/remove_post.html', {'Post':post})

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 #index는 대문, blog는 게시판
-from sns.views import index, sns, posting, new_post
+from sns.views import index, sns, posting, new_post, remove_post
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -15,6 +15,7 @@ urlpatterns = [
     # URL:80/SNS/숫자로 접속하면 게시들-세부페이지(posting)
     path('sns/<int:pk>/', posting, name="posting"),
     path('sns/new_post/', new_post),
+    path('sns/<int:pk>/remove/', remove_post),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
