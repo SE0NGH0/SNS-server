@@ -1,9 +1,14 @@
 from django.shortcuts import render
+# View에 Model(Post 게시글) 가져오기
+from . models import Post
 
 # index.html 페이지를 부르는 index 함수
 def index(request):
     return render(request,'sns/index.html')
 
-# sns.html 페이지를 부르는 blog 함수
+# sns.html 페이지를 부르는 sns 함수
 def sns(request):
-    return render(request, 'sns/sns.html')
+    # 모든 Post를 가져와 postlist에 저장
+    postlist = Post.objects.all()
+    # sns.html 페이지를 열 때, 모든 Post인 postlist도 같이 가져온다
+    return render(request, 'sns/sns.html', {'postlist':postlist})
