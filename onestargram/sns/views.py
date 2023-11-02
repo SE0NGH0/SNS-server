@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # View에 Model(Post 게시글) 가져오기
 from . models import Post
 
@@ -19,3 +19,20 @@ def posting(request, pk):
     post = Post.objects.get(pk=pk)
     # posting.html ㅠㅔ이지를 열 때, 찾아낸 게시글(post)을 post라는 이름으로 가져옴
     return render(request, 'sns/posting.html', {'post':post})
+
+def new_post(request):
+    if request.method == 'POST':
+        if request.POST['mainphoto']:
+            new_article=Post.objects.create(
+                postname=request.POST['postname'],
+                contents=request.POST['contents'],
+                mainphoto=request.POST['mainphoto'],
+            )
+        else:
+            new_article=Post.objects.create(
+                postname=request.POST['postname'],
+                contents=request.POST['contents'],
+                mainphoto=request.POST['mainphoto'],
+            )
+        return redirect('/sns/')
+    return render(request, 'sns/new_post.html')
