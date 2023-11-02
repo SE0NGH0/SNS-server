@@ -12,5 +12,5 @@ urlpatterns = [
     # URL:80/sns에 접속하면 sns 페이지 + URL 이름은 sns이다
     path('sns/', sns, name='sns'),
     # URL:80/SNS/숫자로 접속하면 게시들-세부페이지(posting)
-    path('sns/<int:pk>', posting, name="posting"),
+    path('sns/<int:pk>/', posting, name="posting"),
 ]
